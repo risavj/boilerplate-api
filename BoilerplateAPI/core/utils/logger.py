@@ -1,4 +1,5 @@
 import logging
+import logging.handlers
 import os
 
 from BoilerplateAPI import config
@@ -17,7 +18,7 @@ def get_logger(name):
 		os.makedirs(config.LOG_DIR)
 
 	# create console handler and set level to debug
-	handler = logging.FileHandler(config.LOG_DIR + name)
+	handler = logging.TimedRotatingFileHandler(config.LOG_DIR + name, encoding="bz2", when="midnight")
 	handler.setLevel(logging.DEBUG)
 
 	# create formatter
